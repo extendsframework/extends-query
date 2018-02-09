@@ -7,7 +7,7 @@ use ExtendsFramework\Message\Payload\PayloadMethodTrait;
 use ExtendsFramework\Query\QueryMessageInterface;
 use ExtendsFramework\Query\Result\ResultInterface;
 
-class AbstractQueryExecutor implements QueryExecutorInterface
+abstract class AbstractQueryExecutor implements QueryExecutorInterface
 {
     use PayloadMethodTrait;
 
