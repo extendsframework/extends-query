@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace ExtendsFramework\Query\Requester;
 
 use ExtendsFramework\Query\QueryMessageInterface;
-use ExtendsFramework\Query\Result\ResultInterface;
+use ExtendsFramework\Query\Collection\CollectionInterface;
 
 interface QueryRequesterInterface
 {
@@ -12,8 +12,8 @@ interface QueryRequesterInterface
      * Request result for query message.
      *
      * @param QueryMessageInterface $queryMessage
-     * @return ResultInterface|null
+     * @return CollectionInterface
      * @throws QueryRequesterException
      */
-    public function request(QueryMessageInterface $queryMessage): ?ResultInterface;
+    public function request(QueryMessageInterface $queryMessage): CollectionInterface;
 }

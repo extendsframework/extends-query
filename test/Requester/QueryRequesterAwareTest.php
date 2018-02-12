@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace ExtendsFramework\Query\Requester;
 
 use ExtendsFramework\Message\Payload\PayloadInterface;
+use ExtendsFramework\Query\Collection\CollectionInterface;
 use ExtendsFramework\Query\QueryMessageInterface;
-use ExtendsFramework\Query\Result\ResultInterface;
 use PHPUnit\Framework\TestCase;
 
 class QueryRequesterAwareTest extends TestCase
@@ -20,14 +20,14 @@ class QueryRequesterAwareTest extends TestCase
      */
     public function testRequest(): void
     {
-        $result = $this->createMock(ResultInterface::class);
+        $collection = $this->createMock(CollectionInterface::class);
 
         $queryRequester = $this->createMock(QueryRequesterInterface::class);
         $queryRequester
             ->expects($this->once())
             ->method('request')
             ->with($this->isInstanceOf(QueryMessageInterface::class))
-            ->willReturn($result);
+            ->willReturn($collection);
 
         $payload = $this->createMock(PayloadInterface::class);
 
@@ -37,7 +37,7 @@ class QueryRequesterAwareTest extends TestCase
          */
         $stub = new QueryRequesterAwareStub($queryRequester);
 
-        $this->assertSame($result, $stub->execute($payload, ['foo' => 'bar']));
+        $this->assertSame($collection, $stub->execute($payload, ['foo' => 'bar']));
     }
 }
 
@@ -58,10 +58,10 @@ class QueryRequesterAwareStub
     /**
      * @param PayloadInterface $payload
      * @param array            $metaData
-     * @return ResultInterface
+     * @return CollectionInterface
      * @throws QueryRequesterException
      */
-    public function execute(PayloadInterface $payload, array $metaData): ResultInterface
+    public function execute(PayloadInterface $payload, array $metaData): CollectionInterface
     {
         return $this->request($payload, $metaData);
     }

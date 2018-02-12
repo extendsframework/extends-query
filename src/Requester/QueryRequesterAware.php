@@ -6,7 +6,7 @@ namespace ExtendsFramework\Query\Requester;
 use ExtendsFramework\Message\Payload\PayloadInterface;
 use ExtendsFramework\Message\Payload\Type\PayloadType;
 use ExtendsFramework\Query\QueryMessage;
-use ExtendsFramework\Query\Result\ResultInterface;
+use ExtendsFramework\Query\Collection\CollectionInterface;
 
 trait QueryRequesterAware
 {
@@ -22,10 +22,10 @@ trait QueryRequesterAware
      *
      * @param PayloadInterface $payload
      * @param array|null       $metaData
-     * @return ResultInterface
+     * @return CollectionInterface
      * @throws QueryRequesterException
      */
-    protected function request(PayloadInterface $payload, array $metaData = null): ResultInterface
+    protected function request(PayloadInterface $payload, array $metaData = null): CollectionInterface
     {
         return $this
             ->getQueryRequester()

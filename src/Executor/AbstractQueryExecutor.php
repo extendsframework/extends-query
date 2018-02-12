@@ -5,7 +5,7 @@ namespace ExtendsFramework\Query\Executor;
 
 use ExtendsFramework\Message\Payload\PayloadMethodTrait;
 use ExtendsFramework\Query\QueryMessageInterface;
-use ExtendsFramework\Query\Result\ResultInterface;
+use ExtendsFramework\Query\Collection\CollectionInterface;
 
 abstract class AbstractQueryExecutor implements QueryExecutorInterface
 {
@@ -21,7 +21,7 @@ abstract class AbstractQueryExecutor implements QueryExecutorInterface
     /**
      * @inheritDoc
      */
-    public function execute(QueryMessageInterface $queryMessage): ResultInterface
+    public function execute(QueryMessageInterface $queryMessage): CollectionInterface
     {
         $this->queryMessage = $queryMessage;
 

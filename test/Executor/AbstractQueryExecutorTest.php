@@ -6,7 +6,7 @@ namespace ExtendsFramework\Query\Executor;
 use ExtendsFramework\Message\Payload\PayloadInterface;
 use ExtendsFramework\Message\Payload\Type\PayloadTypeInterface;
 use ExtendsFramework\Query\QueryMessageInterface;
-use ExtendsFramework\Query\Result\ResultInterface;
+use ExtendsFramework\Query\Collection\CollectionInterface;
 use PHPUnit\Framework\TestCase;
 
 class AbstractQueryExecutorTest extends TestCase
@@ -37,15 +37,15 @@ class AbstractQueryExecutorTest extends TestCase
             ->method('getPayloadType')
             ->willReturn($payloadType);
 
-        $result = $this->createMock(ResultInterface::class);
+        $collection = $this->createMock(CollectionInterface::class);
 
         /**
-         * @var ResultInterface       $result
+         * @var CollectionInterface   $collection
          * @var QueryMessageInterface $message
          */
-        $handler = new ExecutorStub($result);
+        $handler = new ExecutorStub($collection);
 
-        $this->assertSame($result, $handler->execute($message));
+        $this->assertSame($collection, $handler->execute($message));
         $this->assertSame($payload, $handler->getPayload());
         $this->assertSame($message, $handler->getQueryMessage());
     }
@@ -59,29 +59,29 @@ class ExecutorStub extends AbstractQueryExecutor
     protected $payload;
 
     /**
-     * @var ResultInterface
+     * @var CollectionInterface
      */
-    protected $result;
+    protected $collection;
 
     /**
      * ExecutorStub constructor.
      *
-     * @param ResultInterface $result
+     * @param CollectionInterface $collection
      */
-    public function __construct(ResultInterface $result)
+    public function __construct(CollectionInterface $collection)
     {
-        $this->result = $result;
+        $this->collection = $collection;
     }
 
     /**
      * @param PayloadInterface $payload
-     * @return ResultInterface
+     * @return CollectionInterface
      */
-    public function executePayloadStub(PayloadInterface $payload): ResultInterface
+    public function executePayloadStub(PayloadInterface $payload): CollectionInterface
     {
         $this->payload = $payload;
 
-        return $this->result;
+        return $this->collection;
     }
 
     /**

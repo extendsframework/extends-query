@@ -6,7 +6,7 @@ namespace ExtendsFramework\Query\Requester;
 use ExtendsFramework\Query\Executor\QueryExecutorInterface;
 use ExtendsFramework\Query\QueryMessageInterface;
 use ExtendsFramework\Query\Requester\Exception\QueryExecutorNotFound;
-use ExtendsFramework\Query\Result\ResultInterface;
+use ExtendsFramework\Query\Collection\CollectionInterface;
 
 class QueryRequester implements QueryRequesterInterface
 {
@@ -20,7 +20,7 @@ class QueryRequester implements QueryRequesterInterface
     /**
      * @inheritDoc
      */
-    public function request(QueryMessageInterface $queryMessage): ?ResultInterface
+    public function request(QueryMessageInterface $queryMessage): CollectionInterface
     {
         return $this
             ->getQueryExecutor($queryMessage)
@@ -54,7 +54,7 @@ class QueryRequester implements QueryRequesterInterface
         $name = $queryMessage
             ->getPayloadType()
             ->getName();
-        
+
         if (array_key_exists($name, $queryExecutors) === false) {
             throw new QueryExecutorNotFound($queryMessage);
         }
