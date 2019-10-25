@@ -40,29 +40,3 @@ class QueryRequesterAwareTest extends TestCase
         $this->assertSame($collection, $stub->execute($payload, ['foo' => 'bar']));
     }
 }
-
-class QueryRequesterAwareStub
-{
-    use QueryRequesterAware;
-
-    /**
-     * QueryRequesterAwareStub constructor.
-     *
-     * @param QueryRequesterInterface $queryRequester
-     */
-    public function __construct(QueryRequesterInterface $queryRequester)
-    {
-        $this->queryRequester = $queryRequester;
-    }
-
-    /**
-     * @param PayloadInterface $payload
-     * @param array            $metaData
-     * @return CollectionInterface
-     * @throws QueryRequesterException
-     */
-    public function execute(PayloadInterface $payload, array $metaData): CollectionInterface
-    {
-        return $this->request($payload, $metaData);
-    }
-}

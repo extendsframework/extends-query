@@ -6,6 +6,7 @@ namespace ExtendsFramework\Query\Requester;
 use ExtendsFramework\Message\Payload\Type\PayloadTypeInterface;
 use ExtendsFramework\Query\Executor\QueryExecutorInterface;
 use ExtendsFramework\Query\QueryMessageInterface;
+use ExtendsFramework\Query\Requester\Exception\QueryExecutorNotFound;
 use PHPUnit\Framework\TestCase;
 
 class QueryRequesterTest extends TestCase
@@ -54,16 +55,17 @@ class QueryRequesterTest extends TestCase
      *
      * Test that and exception will be thrown when there is no query executor for the query message.
      *
-     * @covers                   \ExtendsFramework\Query\Requester\QueryRequester::addQueryExecutor()
-     * @covers                   \ExtendsFramework\Query\Requester\QueryRequester::request()
-     * @covers                   \ExtendsFramework\Query\Requester\QueryRequester::getQueryExecutor()
-     * @covers                   \ExtendsFramework\Query\Requester\QueryRequester::getQueryExecutors()
-     * @covers                   \ExtendsFramework\Query\Requester\Exception\QueryExecutorNotFound::__construct()
-     * @expectedException        \ExtendsFramework\Query\Requester\Exception\QueryExecutorNotFound
-     * @expectedExceptionMessage No query executor found for query message payload name "PayloadBar".
+     * @covers \ExtendsFramework\Query\Requester\QueryRequester::addQueryExecutor()
+     * @covers \ExtendsFramework\Query\Requester\QueryRequester::request()
+     * @covers \ExtendsFramework\Query\Requester\QueryRequester::getQueryExecutor()
+     * @covers \ExtendsFramework\Query\Requester\QueryRequester::getQueryExecutors()
+     * @covers \ExtendsFramework\Query\Requester\Exception\QueryExecutorNotFound::__construct()
      */
     public function testQueryExecutorNotFound(): void
     {
+        $this->expectException(QueryExecutorNotFound::class);
+        $this->expectExceptionMessage('No query executor found for query message payload name "PayloadBar".');
+
         $payloadType = $this->createMock(PayloadTypeInterface::class);
         $payloadType
             ->method('getName')

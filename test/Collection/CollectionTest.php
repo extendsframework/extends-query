@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace ExtendsFramework\Query\Collection;
 
+use ExtendsFramework\Query\Collection\Exception\EmptyCollection;
 use PHPUnit\Framework\TestCase;
 
 class CollectionTest extends TestCase
@@ -55,14 +56,15 @@ class CollectionTest extends TestCase
      *
      * Test that an exception will be thrown when first object is retrieved from a empty collection.
      *
-     * @covers                   \ExtendsFramework\Query\Collection\Collection::__construct()
-     * @covers                   \ExtendsFramework\Query\Collection\Collection::getFirst()
-     * @covers                   \ExtendsFramework\Query\Collection\Exception\EmptyCollection::__construct()
-     * @expectedException        \ExtendsFramework\Query\Collection\Exception\EmptyCollection
-     * @expectedExceptionMessage Can not get first result from empty collection.
+     * @covers \ExtendsFramework\Query\Collection\Collection::__construct()
+     * @covers \ExtendsFramework\Query\Collection\Collection::getFirst()
+     * @covers \ExtendsFramework\Query\Collection\Exception\EmptyCollection::__construct()
      */
     public function testEmptyCollection(): void
     {
+        $this->expectException(EmptyCollection::class);
+        $this->expectExceptionMessage('Can not get first result from empty collection.');
+
         (new Collection([]))->getFirst();
     }
 }

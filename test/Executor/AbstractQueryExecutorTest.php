@@ -5,8 +5,8 @@ namespace ExtendsFramework\Query\Executor;
 
 use ExtendsFramework\Message\Payload\PayloadInterface;
 use ExtendsFramework\Message\Payload\Type\PayloadTypeInterface;
-use ExtendsFramework\Query\QueryMessageInterface;
 use ExtendsFramework\Query\Collection\CollectionInterface;
+use ExtendsFramework\Query\QueryMessageInterface;
 use PHPUnit\Framework\TestCase;
 
 class AbstractQueryExecutorTest extends TestCase
@@ -48,55 +48,5 @@ class AbstractQueryExecutorTest extends TestCase
         $this->assertSame($collection, $handler->execute($message));
         $this->assertSame($payload, $handler->getPayload());
         $this->assertSame($message, $handler->getQueryMessage());
-    }
-}
-
-class ExecutorStub extends AbstractQueryExecutor
-{
-    /**
-     * @var PayloadInterface
-     */
-    protected $payload;
-
-    /**
-     * @var CollectionInterface
-     */
-    protected $collection;
-
-    /**
-     * ExecutorStub constructor.
-     *
-     * @param CollectionInterface $collection
-     */
-    public function __construct(CollectionInterface $collection)
-    {
-        $this->collection = $collection;
-    }
-
-    /**
-     * @param PayloadInterface $payload
-     * @return CollectionInterface
-     */
-    public function executePayloadStub(PayloadInterface $payload): CollectionInterface
-    {
-        $this->payload = $payload;
-
-        return $this->collection;
-    }
-
-    /**
-     * @return QueryMessageInterface
-     */
-    public function getQueryMessage(): QueryMessageInterface
-    {
-        return parent::getQueryMessage();
-    }
-
-    /**
-     * @return PayloadInterface
-     */
-    public function getPayload(): PayloadInterface
-    {
-        return $this->payload;
     }
 }

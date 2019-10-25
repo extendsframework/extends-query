@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace ExtendsFramework\Query\Framework\ServiceLocator\Loader;
 
-use ExtendsFramework\Query\Requester\QueryRequesterInterface;
 use ExtendsFramework\Query\Framework\ServiceLocator\Factory\QueryRequesterFactory;
+use ExtendsFramework\Query\Requester\QueryRequesterInterface;
 use ExtendsFramework\ServiceLocator\Resolver\Factory\FactoryResolver;
 use ExtendsFramework\ServiceLocator\ServiceLocatorInterface;
 use PHPUnit\Framework\TestCase;
