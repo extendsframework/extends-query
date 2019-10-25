@@ -14,15 +14,15 @@ class QueryRequesterFactory implements ServiceFactoryInterface
 {
     /**
      * @inheritDoc
+     * @throws ServiceLocatorException
      */
     public function createService(string $key, ServiceLocatorInterface $serviceLocator, array $extra = null): object
     {
         $config = $serviceLocator->getConfig();
-        $config = $config[QueryRequesterInterface::class] ?? [];
 
         $requester = new QueryRequester();
-        foreach ($config as $key => $payloadNames) {
-            $executor = $this->getQueryExecutor($serviceLocator, $key);
+        foreach ($config[QueryRequesterInterface::class] ?? [] as $name => $payloadNames) {
+            $executor = $this->getQueryExecutor($serviceLocator, $name);
 
             foreach ((array)$payloadNames as $payloadName) {
                 $requester->addQueryExecutor($executor, $payloadName);

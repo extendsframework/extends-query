@@ -5,8 +5,8 @@ namespace ExtendsFramework\Query\Requester;
 
 use ExtendsFramework\Message\Payload\PayloadInterface;
 use ExtendsFramework\Message\Payload\Type\PayloadType;
-use ExtendsFramework\Query\QueryMessage;
 use ExtendsFramework\Query\Collection\CollectionInterface;
+use ExtendsFramework\Query\QueryMessage;
 
 trait QueryRequesterAware
 {

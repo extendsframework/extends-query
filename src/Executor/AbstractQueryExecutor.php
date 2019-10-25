@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace ExtendsFramework\Query\Executor;
 
 use ExtendsFramework\Message\Payload\PayloadMethodTrait;
-use ExtendsFramework\Query\QueryMessageInterface;
 use ExtendsFramework\Query\Collection\CollectionInterface;
+use ExtendsFramework\Query\QueryMessageInterface;
 
 abstract class AbstractQueryExecutor implements QueryExecutorInterface
 {

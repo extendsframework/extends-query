@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace ExtendsFramework\Query\Requester;
 
+use ExtendsFramework\Query\Collection\CollectionInterface;
 use ExtendsFramework\Query\Executor\QueryExecutorInterface;
 use ExtendsFramework\Query\QueryMessageInterface;
 use ExtendsFramework\Query\Requester\Exception\QueryExecutorNotFound;
-use ExtendsFramework\Query\Collection\CollectionInterface;
 
 class QueryRequester implements QueryRequesterInterface
 {
@@ -55,7 +55,7 @@ class QueryRequester implements QueryRequesterInterface
             ->getPayloadType()
             ->getName();
 
-        if (array_key_exists($name, $queryExecutors) === false) {
+        if (!array_key_exists($name, $queryExecutors)) {
             throw new QueryExecutorNotFound($queryMessage);
         }
 

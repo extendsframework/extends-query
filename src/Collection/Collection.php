@@ -21,7 +21,7 @@ class Collection implements CollectionInterface
      */
     public function __construct(array $results)
     {
-        $this->results = $results;
+        $this->results = array_values($results);
     }
 
     /**
@@ -29,7 +29,7 @@ class Collection implements CollectionInterface
      */
     public function getFirst(): object
     {
-        if (isset($this->results[0]) === false) {
+        if (empty($this->results)) {
             throw new EmptyCollection();
         }
 
