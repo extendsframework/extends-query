@@ -55,7 +55,7 @@ class Collection implements CollectionInterface
     /**
      * @inheritDoc
      */
-    public function key()
+    public function key(): ?int
     {
         return key($this->results);
     }
