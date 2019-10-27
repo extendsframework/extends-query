@@ -15,7 +15,7 @@ trait QueryRequesterAware
      *
      * @var QueryRequesterInterface
      */
-    protected $queryRequester;
+    private $queryRequester;
 
     /**
      * Dispatch new query message.
@@ -25,7 +25,7 @@ trait QueryRequesterAware
      * @return CollectionInterface
      * @throws QueryRequesterException
      */
-    protected function request(PayloadInterface $payload, array $metaData = null): CollectionInterface
+    private function request(PayloadInterface $payload, array $metaData = null): CollectionInterface
     {
         return $this
             ->getQueryRequester()
@@ -43,7 +43,7 @@ trait QueryRequesterAware
      *
      * @return QueryRequesterInterface
      */
-    protected function getQueryRequester(): QueryRequesterInterface
+    private function getQueryRequester(): QueryRequesterInterface
     {
         return $this->queryRequester;
     }

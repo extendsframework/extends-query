@@ -16,7 +16,7 @@ abstract class AbstractQueryExecutor implements QueryExecutorInterface
      *
      * @var QueryMessageInterface
      */
-    protected $queryMessage;
+    private $queryMessage;
 
     /**
      * @inheritDoc

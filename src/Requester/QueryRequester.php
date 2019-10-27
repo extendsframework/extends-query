@@ -15,7 +15,7 @@ class QueryRequester implements QueryRequesterInterface
      *
      * @var QueryExecutorInterface[]
      */
-    protected $queryExecutors = [];
+    private $queryExecutors = [];
 
     /**
      * @inheritDoc
@@ -48,7 +48,7 @@ class QueryRequester implements QueryRequesterInterface
      * @return QueryExecutorInterface
      * @throws QueryExecutorNotFound When no query executor can be found for query message.
      */
-    protected function getQueryExecutor(QueryMessageInterface $queryMessage): QueryExecutorInterface
+    private function getQueryExecutor(QueryMessageInterface $queryMessage): QueryExecutorInterface
     {
         $queryExecutors = $this->getQueryExecutors();
         $name = $queryMessage
@@ -67,7 +67,7 @@ class QueryRequester implements QueryRequesterInterface
      *
      * @return QueryExecutorInterface[]
      */
-    protected function getQueryExecutors(): array
+    private function getQueryExecutors(): array
     {
         return $this->queryExecutors;
     }

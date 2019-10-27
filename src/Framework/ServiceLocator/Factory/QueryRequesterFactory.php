@@ -40,7 +40,7 @@ class QueryRequesterFactory implements ServiceFactoryInterface
      * @return QueryExecutorInterface
      * @throws ServiceLocatorException
      */
-    protected function getQueryExecutor(ServiceLocatorInterface $serviceLocator, string $key): object
+    private function getQueryExecutor(ServiceLocatorInterface $serviceLocator, string $key): object
     {
         return $serviceLocator->getService($key);
     }

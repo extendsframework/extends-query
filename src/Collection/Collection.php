@@ -12,7 +12,7 @@ class Collection implements CollectionInterface
      *
      * @var array
      */
-    protected $results;
+    private $results;
 
     /**
      * Result constructor.
