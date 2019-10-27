@@ -39,7 +39,7 @@ class Collection implements CollectionInterface
     /**
      * @inheritDoc
      */
-    public function current()
+    public function current(): object
     {
         return current($this->results);
     }
