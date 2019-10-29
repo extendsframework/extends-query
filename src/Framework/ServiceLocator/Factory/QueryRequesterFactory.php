@@ -19,9 +19,10 @@ class QueryRequesterFactory implements ServiceFactoryInterface
     public function createService(string $key, ServiceLocatorInterface $serviceLocator, array $extra = null): object
     {
         $config = $serviceLocator->getConfig();
+        $config = $config[QueryRequesterInterface::class] ?? [];
 
         $requester = new QueryRequester();
-        foreach ($config[QueryRequesterInterface::class] ?? [] as $name => $payloadNames) {
+        foreach ($config as $name => $payloadNames) {
             $executor = $this->getQueryExecutor($serviceLocator, $name);
 
             foreach ((array)$payloadNames as $payloadName) {
