@@ -16,7 +16,6 @@ class QueryRequesterAwareTest extends TestCase
      * Test that request method will proxy to the query requester.
      *
      * @covers \ExtendsFramework\Query\Requester\QueryRequesterAware::request()
-     * @covers \ExtendsFramework\Query\Requester\QueryRequesterAware::getQueryRequester()
      */
     public function testRequest(): void
     {

@@ -22,9 +22,15 @@ class QueryRequester implements QueryRequesterInterface
      */
     public function request(QueryMessageInterface $queryMessage): CollectionInterface
     {
-        return $this
-            ->getQueryExecutor($queryMessage)
-            ->execute($queryMessage);
+        $name = $queryMessage
+            ->getPayloadType()
+            ->getName();
+
+        if (!array_key_exists($name, $this->queryExecutors)) {
+            throw new QueryExecutorNotFound($queryMessage);
+        }
+
+        return $this->queryExecutors[$name]->execute($queryMessage);
     }
 
     /**
@@ -39,36 +45,5 @@ class QueryRequester implements QueryRequesterInterface
         $this->queryExecutors[$payloadName] = $queryExecutor;
 
         return $this;
-    }
-
-    /**
-     * Get query executor.
-     *
-     * @param QueryMessageInterface $queryMessage
-     * @return QueryExecutorInterface
-     * @throws QueryExecutorNotFound When no query executor can be found for query message.
-     */
-    private function getQueryExecutor(QueryMessageInterface $queryMessage): QueryExecutorInterface
-    {
-        $queryExecutors = $this->getQueryExecutors();
-        $name = $queryMessage
-            ->getPayloadType()
-            ->getName();
-
-        if (!array_key_exists($name, $queryExecutors)) {
-            throw new QueryExecutorNotFound($queryMessage);
-        }
-
-        return $queryExecutors[$name];
-    }
-
-    /**
-     * Get query executors.
-     *
-     * @return QueryExecutorInterface[]
-     */
-    private function getQueryExecutors(): array
-    {
-        return $this->queryExecutors;
     }
 }

@@ -27,24 +27,12 @@ trait QueryRequesterAware
      */
     private function request(PayloadInterface $payload, array $metaData = null): CollectionInterface
     {
-        return $this
-            ->getQueryRequester()
-            ->request(
-                new QueryMessage(
-                    $payload,
-                    new PayloadType($payload),
-                    $metaData
-                )
-            );
-    }
-
-    /**
-     * Get query requester.
-     *
-     * @return QueryRequesterInterface
-     */
-    private function getQueryRequester(): QueryRequesterInterface
-    {
-        return $this->queryRequester;
+        return $this->queryRequester->request(
+            new QueryMessage(
+                $payload,
+                new PayloadType($payload),
+                $metaData
+            )
+        );
     }
 }

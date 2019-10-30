@@ -22,8 +22,9 @@ class QueryRequesterFactory implements ServiceFactoryInterface
         $config = $config[QueryRequesterInterface::class] ?? [];
 
         $requester = new QueryRequester();
-        foreach ($config as $name => $payloadNames) {
-            $executor = $this->getQueryExecutor($serviceLocator, $name);
+        foreach ($config as $executorKey => $payloadNames) {
+            /** @var QueryExecutorInterface $executor */
+            $executor = $serviceLocator->getService($executorKey);
 
             foreach ((array)$payloadNames as $payloadName) {
                 $requester->addQueryExecutor($executor, $payloadName);
@@ -31,18 +32,5 @@ class QueryRequesterFactory implements ServiceFactoryInterface
         }
 
         return $requester;
-    }
-
-    /**
-     * Get query executor from service locator for key.
-     *
-     * @param ServiceLocatorInterface $serviceLocator
-     * @param string                  $key
-     * @return QueryExecutorInterface
-     * @throws ServiceLocatorException
-     */
-    private function getQueryExecutor(ServiceLocatorInterface $serviceLocator, string $key): object
-    {
-        return $serviceLocator->getService($key);
     }
 }

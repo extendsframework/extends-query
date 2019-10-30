@@ -16,7 +16,6 @@ class QueryRequesterFactoryTest extends TestCase
      * Test that query requester will be created from config.
      *
      * @covers \ExtendsFramework\Query\Framework\ServiceLocator\Factory\QueryRequesterFactory::createService()
-     * @covers \ExtendsFramework\Query\Framework\ServiceLocator\Factory\QueryRequesterFactory::getQueryExecutor()
      */
     public function testCreateService(): void
     {

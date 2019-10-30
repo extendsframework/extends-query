@@ -18,8 +18,6 @@ class QueryRequesterTest extends TestCase
      *
      * @covers \ExtendsFramework\Query\Requester\QueryRequester::addQueryExecutor()
      * @covers \ExtendsFramework\Query\Requester\QueryRequester::request()
-     * @covers \ExtendsFramework\Query\Requester\QueryRequester::getQueryExecutors()
-     * @covers \ExtendsFramework\Query\Requester\QueryRequester::getQueryExecutor()
      */
     public function testRequest(): void
     {
@@ -57,8 +55,6 @@ class QueryRequesterTest extends TestCase
      *
      * @covers \ExtendsFramework\Query\Requester\QueryRequester::addQueryExecutor()
      * @covers \ExtendsFramework\Query\Requester\QueryRequester::request()
-     * @covers \ExtendsFramework\Query\Requester\QueryRequester::getQueryExecutor()
-     * @covers \ExtendsFramework\Query\Requester\QueryRequester::getQueryExecutors()
      * @covers \ExtendsFramework\Query\Requester\Exception\QueryExecutorNotFound::__construct()
      */
     public function testQueryExecutorNotFound(): void
