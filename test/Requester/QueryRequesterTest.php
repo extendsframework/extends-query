@@ -14,7 +14,7 @@ class QueryRequesterTest extends TestCase
     /**
      * Request.
      *
-     * Test that request will be handled by the executor.
+     * Test that ...
      *
      * @covers \ExtendsFramework\Query\Requester\QueryRequester::addQueryExecutor()
      * @covers \ExtendsFramework\Query\Requester\QueryRequester::request()
@@ -37,6 +37,10 @@ class QueryRequesterTest extends TestCase
             ->method('execute')
             ->with($message);
 
+        /**
+         * @var QueryExecutorInterface $executor
+         * @var QueryMessageInterface  $message
+         */
         $requester = new QueryRequester();
         $requester
             ->addQueryExecutor($executor, 'PayloadFoo')
@@ -73,6 +77,10 @@ class QueryRequesterTest extends TestCase
             ->expects($this->never())
             ->method('execute');
 
+        /**
+         * @var QueryExecutorInterface $executor
+         * @var QueryMessageInterface  $message
+         */
         $requester = new QueryRequester();
         $requester
             ->addQueryExecutor($executor, 'PayloadFoo')
