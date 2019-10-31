@@ -42,9 +42,6 @@ class QueryRequesterFactoryTest extends TestCase
             )
             ->willReturn($executor);
 
-        /**
-         * @var ServiceLocatorInterface $serviceLocator
-         */
         $factory = new QueryRequesterFactory();
         $requester = $factory->createService(QueryRequesterInterface::class, $serviceLocator);
 

@@ -30,10 +30,6 @@ class QueryRequesterAwareTest extends TestCase
 
         $payload = $this->createMock(PayloadInterface::class);
 
-        /**
-         * @var QueryRequesterInterface $queryRequester
-         * @var PayloadInterface        $payload
-         */
         $stub = new QueryRequesterAwareStub($queryRequester);
 
         $this->assertSame($collection, $stub->execute($payload, ['foo' => 'bar']));

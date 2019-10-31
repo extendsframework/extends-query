@@ -39,10 +39,6 @@ class AbstractQueryExecutorTest extends TestCase
 
         $collection = $this->createMock(CollectionInterface::class);
 
-        /**
-         * @var CollectionInterface   $collection
-         * @var QueryMessageInterface $message
-         */
         $handler = new ExecutorStub($collection);
 
         $this->assertSame($collection, $handler->execute($message));
