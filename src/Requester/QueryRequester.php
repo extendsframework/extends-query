@@ -26,7 +26,7 @@ class QueryRequester implements QueryRequesterInterface
             ->getPayloadType()
             ->getName();
 
-        if (!array_key_exists($name, $this->queryExecutors)) {
+        if (!isset($this->queryExecutors[$name])) {
             throw new QueryExecutorNotFound($queryMessage);
         }
 
